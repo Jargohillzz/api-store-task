@@ -1,0 +1,84 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+$utilities: (
+  "t-color": (
+    property: color,
+    class: color,
+    values: (
+      "white": #fff,
+      "blue": #0aaeb9,
+      "slider": #14b1f0,
+      "black": #272727,
+      "green": #15adb7,
+      "light": #a6a6a6,
+      "grey": #899095,
+      "title": #00cad7,
+      "red": #d22727,
+    ),
+  ),
+  "bg-color": (
+    property: background-color,
+    class: bg,
+    values: (
+      "white": #fff,
+      "blue": #0aaeb9,
+      "btnBlue": #14b1f0,
+      "black": #272727,
+      "green": #15adb7,
+      "light": #a6a6a6,
+      "grey": #899095,
+      "facebook": #3b5998,
+      "instagram": #3b5998,
+      "pinterest": #cb2027,
+      "linkedin": #007ab9,
+      "darkgreen": #03484d,
+      "footer": #393939,
+      "caramel": #fbf7f7,
+    ),
+  ),
+  "f-size": (
+    property: font-size,
+    class: fts,
+    responsive: true,
+    values: (
+      "0": 57px,
+      "1": 40px,
+      "1-5": 37px,
+      "2": 32px,
+      "2-3": 30px,
+      "2-5": 20px,
+      "3": 18px,
+      "4": 16px,
+      "4-5": 15px,
+      "5": 14px,
+      "6": 12px,
+      "7": 11px,
+      "8": 9px,
+    ),
+  ),
+  "maxwidth": (
+    property: max-width,
+    class: max,
+    responsive: true,
+    values: (
+      "490": 490px,
+    ),
+  ),
+  "minwidth": (
+    property: min-width,
+    class: mw,
+    values: (
+      "fit": fit-content,
+    ),
+  ),
+  "box-shadow": (
+    property: box-shadow,
+    class: bs,
+    values: (
+      "nav": 0px 4px 9px rgba(0, 0, 0, 0.5),
+    ),
+  ),
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";

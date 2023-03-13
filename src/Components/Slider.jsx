@@ -1,13 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Button } from "react-bootstrap";
-import { appContext } from "../contexts/appContext";
 import { UseFetchData } from "../contexts/UseFetchData";
 
 const Slider = () => {
   const sliderRef = useRef();
   const [counter, setCounter] = useState(0);
   const [scroller, setScroller] = useState(0);
-  const { storedData, setStoredData } = useContext(appContext);
 
   const scrollValue = () => {
     const value = Math.floor(sliderRef.current.scrollLeft);

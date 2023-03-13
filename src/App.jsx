@@ -1,6 +1,4 @@
-import React, { useContext } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
 
 import { Route, Routes } from "react-router-dom";
 import Credentials from "./Components/Credentials";
@@ -16,7 +14,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/cred" element={<Credentials />} />
         </Routes>
-        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </div>
   );

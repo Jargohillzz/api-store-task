@@ -46,12 +46,12 @@ const OurProducts = () => {
       </div>
       <div className="products-bottom">
         <div className="header d-flex gap-3 gap-md-5">
-          <h4 className="fts-7 fts-sm-5 fts-md-3 active">
+          <h4 className="fts-8 fts-sm-6 fts-md-3 active">
             EASY MONTHLY INSTALLMENTS
           </h4>
-          <h4 className="fts-7 fts-sm-5 fts-md-3 ">ON SALE</h4>
-          <h4 className="fts-7 fts-sm-5 fts-md-3">TOP RATED</h4>
-          <div className="ms-auto me-3">
+          <h4 className="fts-8 fts-sm-6 fts-md-3 ">ON SALE</h4>
+          <h4 className="fts-8 fts-sm-6 fts-md-3">TOP RATED</h4>
+          <div className="ms-auto d-flex me-2 ">
             <i className="fa-solid fa-caret-left fts-2-5"></i>
             <i className="fa-solid fa-caret-right fts-2-5"></i>
           </div>

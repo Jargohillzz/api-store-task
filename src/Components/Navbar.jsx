@@ -1,24 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Dropdown, DropdownButton, InputGroup } from "react-bootstrap";
-import winLogo from "../assets/win-logo.svg";
 import busIcon from "../assets/bus.svg";
 import pakistanIcon from "../assets/pakistan.svg";
 import returnIcon from "../assets/return.svg";
 import cartIcon from "../assets/cart.svg";
 import Logo from "./Logo";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navRef = useRef();
-  const [isLock, setIsLock] = useState(document.body.style.overflow === "auto");
+  const [btn, setBtn] = useState(true);
+  const navigate = useNavigate();
 
   const navToggle = () => {
     navRef.current.classList.toggle("show-nav");
-    setIsLock(!isLock);
+    setBtn(!btn);
+    navigate("/nav");
   };
-  useEffect(() => {
-    document.body.style.overflow = isLock ? "hidden" : "auto";
-  });
 
   const navList = [
     {
@@ -52,52 +50,50 @@ const Navbar = () => {
             <div className="bar color-white me-3" onClick={navToggle}>
               <i
                 className={` fa-solid ${
-                  isLock ? "fa-times color-red fts-1" : "fts-2 fa-bars"
+                  btn ? "fts-2 fa-bars" : "fa-times color-red fts-1"
                 }`}
               ></i>
             </div>
           </div>
         </div>
-        <div className="nav-cont">
-          <div ref={navRef} className="nav-content ">
-            <InputGroup className="d-flex p-4 ">
-              <DropdownButton
-                variant="light"
-                className="bg-white fts-7"
-                title="All category"
-              >
-                <Dropdown.Item href="#">Action</Dropdown.Item>
-                <Dropdown.Item href="#">Another action</Dropdown.Item>
-                <Dropdown.Item href="#">Something else here</Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item href="#">Separated link</Dropdown.Item>
-              </DropdownButton>
-              <input
-                placeholder="Search for products"
-                className="flex-grow-1 border-0"
-              />
-              <InputGroup.Text className="border-0">
-                <i className="fa-solid fa-magnifying-glass"></i>
-              </InputGroup.Text>
-            </InputGroup>
-            <div className="d-flex flex-column align-items-center color-white gap-5 mt-5">
-              <p className="m-0 fts-2-5">Home</p>
-              <p className="m-0 fts-2-5">Easy Monthly Installments</p>
-              <p className="m-0 fts-2-5">Shop By Brands</p>
-              <p className="m-0 fts-2-5">Become a Vendor</p>
-              <div className="d-flex gap-4">
-                <i className="fts-2-5 fa-brands fa-facebook-f"></i>
-                <i className="fts-2-5 fa-brands fa-twitter"></i>
-                <i className="fts-2-5 fa-brands fa-linkedin-in"></i>
-                <i className="fts-2-5 fa-brands fa-instagram"></i>
-              </div>
-              <Link
-                to="/cred"
-                className="link fts-2-5 color-white text-decoration-none m-0 bg-blue py-2 px-5 rounded-2 mt-3"
-              >
-                Sign In
-              </Link>
+        <div ref={navRef} className="nav-content ">
+          <InputGroup className="d-flex p-2 ">
+            <DropdownButton
+              variant="light"
+              className="bg-white fts-7"
+              title="All category"
+            >
+              <Dropdown.Item href="#">Action</Dropdown.Item>
+              <Dropdown.Item href="#">Another action</Dropdown.Item>
+              <Dropdown.Item href="#">Something else here</Dropdown.Item>
+              <Dropdown.Divider />
+              <Dropdown.Item href="#">Separated link</Dropdown.Item>
+            </DropdownButton>
+            <input
+              placeholder="Search for products"
+              className="flex-grow-1 border-0"
+            />
+            <InputGroup.Text className="border-0">
+              <i className="fa-solid fa-magnifying-glass"></i>
+            </InputGroup.Text>
+          </InputGroup>
+          <div className="d-flex flex-column h-75 align-items-center color-white gap-4 mt-4">
+            <p className="m-0 fts-2-5">Home</p>
+            <p className="m-0 fts-2-5">Easy Monthly Installments</p>
+            <p className="m-0 fts-2-5">Shop By Brands</p>
+            <p className="m-0 fts-2-5">Become a Vendor</p>
+            <div className="d-flex gap-4">
+              <i className="fts-2-5 fa-brands fa-facebook-f"></i>
+              <i className="fts-2-5 fa-brands fa-twitter"></i>
+              <i className="fts-2-5 fa-brands fa-linkedin-in"></i>
+              <i className="fts-2-5 fa-brands fa-instagram"></i>
             </div>
+            <Link
+              to="/cred"
+              className="link fts-2-5 color-white text-decoration-none m-0 mt-auto mb-3 bg-blue py-2 px-5 rounded-2 mt-3"
+            >
+              Sign In
+            </Link>
           </div>
         </div>
       </div>

@@ -5,10 +5,10 @@ import { openModal } from "../features/cartSlice";
 
 const ProdList = ({ num1, num2 }) => {
   const { data } = useSelector((store) => store.api);
+  const dispatch = useDispatch();
   return (
     <>
       {data.map((data) => {
-        const dispatch = useDispatch();
         const { id, price, category, title, images, brand } = data;
         if (id >= num1 && id <= num2) {
           return (

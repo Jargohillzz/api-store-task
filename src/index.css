@@ -175,6 +175,7 @@ input[type="checkbox"]:checked:after {
 
 .win-logo {
   position: relative;
+  min-width: max-content;
 }
 
 .win-logo .c-dot {
@@ -574,7 +575,6 @@ hr {
   top: 90vh;
   right: 50%;
   transform: translateX(50%);
-  background-color: transparent;
 }
 .clear-container .clear-btn {
   color: #c82020;

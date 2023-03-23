@@ -48,23 +48,25 @@ const Footer = () => {
   return (
     <div className="footer bg-footer color-white w-100 pe-md-5">
       <div className="fts-7 fts-md-5 container-md d-flex flex-column flex-md-row gap-3 justify-content-md-between p-md-4">
-        <div className="footer-top d-flex flex-md-column align-items-start justify-content-between me-md-5">
-          <Logo />
-          <div className="pt-3 d-flex flex-column">
-            <p className="fts-5 fts-md-3 color-title pb-1">
-              Got questions? Call us 24/7!
-            </p>
-            <p>03 111 666 144</p>
-            <p>0317 1777015.</p>
-          </div>
-          <div className="pt-3 d-flex flex-column align-items-end align-items-md-start">
-            <p className="fts-5 fts-md-3 color-title">Contact info</p>
-            <p>info@winstore.pk</p>
-            <div className="d-flex gap-3 mt-2">
-              <i className="fts-2-5 fa-brands fa-facebook-f"></i>
-              <i className="fts-2-5 fa-brands fa-twitter"></i>
-              <i className="fts-2-5 fa-brands fa-linkedin-in"></i>
-              <i className="fts-2-5 fa-brands fa-instagram"></i>
+        <div className="footer-top d-flex flex-column align-items-start justify-content-between me-md-5">
+          <Logo color="white" />
+          <div className="d-flex flex-md-column">
+            <div className="pt-3 d-flex flex-column">
+              <p className="fts-5 fts-md-3 color-title pb-1">
+                Got questions? Call us 24/7!
+              </p>
+              <p>03 111 666 144</p>
+              <p>0317 1777015.</p>
+            </div>
+            <div className="pt-3 d-flex flex-column align-items-end align-items-md-start">
+              <p className="fts-5 fts-md-3 color-title">Contact info</p>
+              <p>info@winstore.pk</p>
+              <div className="d-flex gap-3 mt-2">
+                <i className="fts-2-5 fa-brands fa-facebook-f"></i>
+                <i className="fts-2-5 fa-brands fa-twitter"></i>
+                <i className="fts-2-5 fa-brands fa-linkedin-in"></i>
+                <i className="fts-2-5 fa-brands fa-instagram"></i>
+              </div>
             </div>
           </div>
         </div>

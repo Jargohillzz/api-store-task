@@ -50,7 +50,7 @@ const Footer = () => {
       <div className="fts-7 fts-md-5 container-md d-flex flex-column flex-md-row gap-3 justify-content-md-between p-md-4">
         <div className="footer-top d-flex flex-column align-items-start justify-content-between me-md-5">
           <Logo color="white" />
-          <div className="d-flex flex-md-column">
+          <div className="d-flex w-100 justify-content-around flex-md-column">
             <div className="pt-3 d-flex flex-column">
               <p className="fts-5 fts-md-3 color-title pb-1">
                 Got questions? Call us 24/7!

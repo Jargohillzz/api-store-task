@@ -1,26 +1,23 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { UseFetchData } from "../contexts/UseFetchData";
+import { useSelector, useDispatch } from "react-redux";
+import { openModal } from "../features/cartSlice";
 
 const ProdList = ({ num1, num2 }) => {
-  const { isLoading, data, isError, error } = UseFetchData();
-
-  if (isLoading) {
-    return <h2>Loading....</h2>;
-  }
-  if (isError) {
-    return <h2>{error.message}</h2>;
-  }
-
+  const { data } = useSelector((store) => store.api);
   return (
     <>
-      {data.data.map((data) => {
-        const { id, price, category, title, image } = data;
+      {data.map((data) => {
+        const dispatch = useDispatch();
+        const { id, price, category, title, images, brand } = data;
         if (id >= num1 && id <= num2) {
           return (
-            <div className="product-element  d-flex justify-content-between">
+            <div
+              key={id}
+              className="product-element  d-flex justify-content-between"
+            >
               <div className="grid-img p-3">
-                <img src={image} alt="products" />
+                <img src={images[images.length - 1]} alt={brand} />
               </div>
               <div className="w-50 d-flex flex-column gap-2">
                 <p className="m-0 fts-6">{category}</p>
@@ -33,13 +30,17 @@ const ProdList = ({ num1, num2 }) => {
                   </h5>
                   <h4 className="fts-4-5 color-title">$ {price}</h4>
                 </div>
-                <Button className="bg-green fts-4-5 w-100 border-0">
+                <Button
+                  className="bg-green fts-4-5 w-100 border-0"
+                  onClick={() => dispatch(openModal(id))}
+                >
                   Add to cart
                 </Button>
               </div>
             </div>
           );
         }
+        return;
       })}
     </>
   );

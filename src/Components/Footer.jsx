@@ -74,9 +74,7 @@ const Footer = () => {
             return (
               <div className="" key={id}>
                 <h5 className="fts-4 fts-md-2-5 color-title">{title}</h5>
-                {list.map((listitem) => {
-                  let i = 0;
-                  i++;
+                {list.map((listitem, i) => {
                   return (
                     <p key={i} className="my-1 my-md-2 fts-7 fts-md-5 ">
                       {listitem}

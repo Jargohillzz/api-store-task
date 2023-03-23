@@ -3,9 +3,9 @@ import { Dropdown, DropdownButton, InputGroup } from "react-bootstrap";
 import busIcon from "../assets/bus.svg";
 import pakistanIcon from "../assets/pakistan.svg";
 import returnIcon from "../assets/return.svg";
-import cartIcon from "../assets/cart.svg";
 import Logo from "./Logo";
 import { Link, useNavigate } from "react-router-dom";
+import CartLogo from "./CartLogo";
 
 const Navbar = () => {
   const navRef = useRef();
@@ -13,11 +13,9 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const navToggle = () => {
-    navRef.current.classList.toggle("show-nav");
     setBtn(!btn);
     navigate("/nav");
   };
-
   const navList = [
     {
       id: 1,
@@ -30,7 +28,7 @@ const Navbar = () => {
       text: "Delivery within Pakistan",
     },
     {
-      id: 1,
+      id: 3,
       icon: returnIcon,
       text: "Return",
     },
@@ -43,57 +41,18 @@ const Navbar = () => {
           <Logo color="white" />
           <div className="d-flex gap-3 align-items-center">
             <i className="fa-regular fts-2-5 fa-user color-white"></i>
-            <div className="d-flex align-items-center">
-              <img className="cart " src={cartIcon} alt="cart" />
-              <span className="color-white">Cart</span>
-            </div>
-            <div className="bar color-white me-3" onClick={navToggle}>
+            <CartLogo />
+            <div
+              className="bar color-white me-3"
+              role="button"
+              onClick={navToggle}
+            >
               <i
                 className={` fa-solid ${
                   btn ? "fts-2 fa-bars" : "fa-times color-red fts-1"
                 }`}
               ></i>
             </div>
-          </div>
-        </div>
-        <div ref={navRef} className="nav-content ">
-          <InputGroup className="d-flex p-2 ">
-            <DropdownButton
-              variant="light"
-              className="bg-white fts-7"
-              title="All category"
-            >
-              <Dropdown.Item href="#">Action</Dropdown.Item>
-              <Dropdown.Item href="#">Another action</Dropdown.Item>
-              <Dropdown.Item href="#">Something else here</Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Item href="#">Separated link</Dropdown.Item>
-            </DropdownButton>
-            <input
-              placeholder="Search for products"
-              className="flex-grow-1 border-0"
-            />
-            <InputGroup.Text className="border-0">
-              <i className="fa-solid fa-magnifying-glass"></i>
-            </InputGroup.Text>
-          </InputGroup>
-          <div className="d-flex flex-column h-75 align-items-center color-white gap-4 mt-4">
-            <p className="m-0 fts-2-5">Home</p>
-            <p className="m-0 fts-2-5">Easy Monthly Installments</p>
-            <p className="m-0 fts-2-5">Shop By Brands</p>
-            <p className="m-0 fts-2-5">Become a Vendor</p>
-            <div className="d-flex gap-4">
-              <i className="fts-2-5 fa-brands fa-facebook-f"></i>
-              <i className="fts-2-5 fa-brands fa-twitter"></i>
-              <i className="fts-2-5 fa-brands fa-linkedin-in"></i>
-              <i className="fts-2-5 fa-brands fa-instagram"></i>
-            </div>
-            <Link
-              to="/cred"
-              className="link fts-2-5 color-white text-decoration-none m-0 mt-auto mb-3 bg-blue py-2 px-5 rounded-2 mt-3"
-            >
-              Sign In
-            </Link>
           </div>
         </div>
       </div>
@@ -149,10 +108,7 @@ const Navbar = () => {
             <div className="profile-cart d-flex gap-4 align-items-center">
               <i className="fa-regular fts-2-5 fa-user color-white"></i>
               <i className="fa-regular fts-2-5 fa-heart color-white"></i>
-              <div className="d-flex align-items-center">
-                <img className="cart " src={cartIcon} alt="cart" />
-                <span className="color-white">Cart</span>
-              </div>
+              <CartLogo />
             </div>
           </div>
           <div className="nav-bottom d-flex align-items-center w-100 color-white gap-5 gap-lg-3 pb-3">

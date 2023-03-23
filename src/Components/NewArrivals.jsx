@@ -1,17 +1,11 @@
 import React, { useContext } from "react";
 import { Button } from "react-bootstrap";
-import { UseFetchData } from "../contexts/UseFetchData";
+import { useDispatch, useSelector } from "react-redux";
+import { openModal } from "../features/cartSlice";
 
 const NewArrivals = () => {
-  const { isLoading, data, isError, error } = UseFetchData();
-
-  if (isLoading) {
-    return <h2>Loading....</h2>;
-  }
-  if (isError) {
-    return <h2>{error.message}</h2>;
-  }
-
+  const dispatch = useDispatch();
+  const { data } = useSelector((store) => store.api);
   return (
     <div className="p-3 px-md-5">
       <div className="arrive-top d-flex justify-content-between align-items-center">
@@ -21,8 +15,8 @@ const NewArrivals = () => {
         <h5 className="color-title">Ends in: 08 08 53 08</h5>
       </div>
       <div className="arrive-bottom row p-4 gap-4 justify-content-around">
-        {data.data.map((data) => {
-          const { id, price, category, title, image } = data;
+        {data.map((data) => {
+          const { id, price, category, title, images, brand } = data;
           if (id > 14) {
             return (
               <div
@@ -32,7 +26,7 @@ const NewArrivals = () => {
                 <p className="fts-6">{category}</p>
                 <h4 className="fts-4-5 color-title">{title.slice(0, 15)}...</h4>
                 <div className="arrive-img">
-                  <img src={image} alt="gergrfe" />
+                  <img src={images[images.length - 1]} alt={brand} />
                 </div>
                 <div className="arrive-price d-flex gap-2 align-items-center">
                   <h5 className="fts-6 text-decoration-line-through">
@@ -40,7 +34,10 @@ const NewArrivals = () => {
                   </h5>
                   <h4 className="fts-4-5 color-title">$ {price}</h4>
                 </div>
-                <Button className="bg-green fts-4-5 w-100 border-0">
+                <Button
+                  className="bg-green fts-4-5 w-100 border-0"
+                  onClick={() => dispatch(openModal(id))}
+                >
                   Add to cart
                 </Button>
               </div>

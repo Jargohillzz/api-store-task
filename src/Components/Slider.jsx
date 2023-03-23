@@ -1,11 +1,13 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Button } from "react-bootstrap";
-import { UseFetchData } from "../contexts/UseFetchData";
+import { useSelector } from "react-redux";
+import { HashLink } from "react-router-hash-link";
 
 const Slider = () => {
   const sliderRef = useRef();
   const [counter, setCounter] = useState(0);
   const [scroller, setScroller] = useState(0);
+  const { data } = useSelector((store) => store.api);
 
   const scrollValue = () => {
     const value = Math.floor(sliderRef.current.scrollLeft);
@@ -24,14 +26,6 @@ const Slider = () => {
     }
   };
 
-  const { isLoading, data, isError, error } = UseFetchData();
-
-  if (isLoading) {
-    return <h2>Loading....</h2>;
-  }
-  if (isError) {
-    return <h2>{error.message}</h2>;
-  }
   return (
     <div>
       <div className="slider">
@@ -40,11 +34,11 @@ const Slider = () => {
           ref={sliderRef}
           onScroll={scrollValue}
         >
-          {data.data.map((prod) => {
-            const { id, image, category } = prod;
+          {data.map((prod) => {
+            const { id, images, category } = prod;
             return (
               <div key={id} className="media-element">
-                <img src={image} alt="serfd" />
+                <img src={images[images.length - 1]} alt="serfd" />
                 <div className="slider-label fts-2-5 d-flex justify-content-between py-2 pe-4">
                   <p className="m-0">{category}</p>
                   <p className="m-0 color-slider">Shop</p>
@@ -71,42 +65,23 @@ const Slider = () => {
             am not a product of my circumstances. I am a product of my
             decisions. decisions.
           </p>
-          <Button className="bg-btnBlue border-0 px-5 mt-4">View More</Button>
+          <HashLink to="#prod-list" smooth className="">
+            <Button className="bg-btnBlue border-0 px-5 mt-4">View More</Button>
+          </HashLink>
         </div>
         <div className="d-flex justify-content-around w-100 gap-4">
-          {data.data.map((card) => {
-            const { id, price, image } = card;
+          {data.map((card) => {
+            const { id, price, images } = card;
             if (id > 13 && id < 17) {
               return (
                 <div className="deal-card" key={id}>
-                  <img src={image} alt="sweet deals" />
+                  <img src={images[images.length - 1]} alt="sweet deals" />
                   <h5 className="m-0 text-end fts-7 fts-md-5">Add to cart</h5>
-                  <h4 className="m-0 text-end fts-7 fts-md-5">RS {price}</h4>
+                  <h4 className="m-0 text-end fts-7 fts-md-5">$ {price}</h4>
                 </div>
               );
             }
           })}
-          {/* <div className="deal-card">
-            <img src="/water-drops-bg.png" alt="sweet deals" />
-            <h5 className="m-0 text-end fts-7 fts-md-5">Add to cart</h5>
-            <h4 className="m-0 text-end fts-7 fts-md-5">RS 30,000</h4>
-          </div>
-          <div className="deal-card">
-            <img src="/water-drops-bg.png" alt="sweet deals" />
-            <h5 className="m-0 text-end fts-7 fts-md-5">Add to cart</h5>
-            <h4 className="m-0 text-end fts-7 fts-md-5">RS 30,000</h4>
-          </div>
-          <div className="deal-card">
-            <img src="/water-drops-bg.png" alt="sweet deals" />
-            <h5 className="m-0 text-end fts-7 fts-md-5">Add to cart</h5>
-            <h4 className="m-0 text-end fts-7 fts-md-5">RS 30,000</h4>
-          </div> */}
-        </div>
-        <div className="slider-btn prev">
-          <i className="fts-2 fa-solid fa-chevron-left"></i>
-        </div>
-        <div className="slider-btn next">
-          <i className="fts-2 fa-solid fa-chevron-right"></i>
         </div>
       </div>
     </div>

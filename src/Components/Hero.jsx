@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { HashLink as Link } from "react-router-hash-link";
 
 const Hero = () => {
   return (
@@ -15,7 +16,9 @@ const Hero = () => {
           I am not a product of my circumstances. I am a product of my
           decisions.
         </p>
-        <Button className="bg-btnBlue border-0 px-5 mt-4">View More</Button>
+        <Link to="#our-products" smooth>
+          <Button className="bg-btnBlue border-0 px-5 mt-4">View More</Button>
+        </Link>
       </div>
     </div>
   );

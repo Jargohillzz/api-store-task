@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-
 import { Dropdown, DropdownButton, InputGroup } from "react-bootstrap";
 import Logo from "./Logo";
 import { Link, useNavigate } from "react-router-dom";
-import cartIcon from "../assets/cart.svg";
+import CartLogo from "./CartLogo";
 
 const NavMob = () => {
   const navRef = useRef();
@@ -12,7 +11,12 @@ const NavMob = () => {
 
   const navToggle2 = () => {
     setBtn(!btn);
+    navigate(-1);
+  };
+
+  const goHome = () => {
     navigate("/");
+    setBtn(!btn);
   };
 
   return (
@@ -22,21 +26,18 @@ const NavMob = () => {
           <Logo color="white" />
           <div className="d-flex gap-3 align-items-center">
             <i className="fa-regular fts-2-5 fa-user color-white"></i>
-            <div className="d-flex align-items-center">
-              <img className="cart " src={cartIcon} alt="cart" />
-              <span className="color-white">Cart</span>
-            </div>
-            <div className="bar color-white me-3" onClick={navToggle2}>
-              <i
-                className={` fa-solid ${
-                  btn ? "fts-2 fa-bars" : "fa-times color-red fts-1"
-                }`}
-              ></i>
+            <CartLogo />
+            <div
+              className="bar color-white me-3"
+              role="button"
+              onClick={navToggle2}
+            >
+              <i className="fa-solid fa-times color-red fts-1"></i>
             </div>
           </div>
         </div>
         <div ref={navRef} className="nav-content show-nav">
-          <InputGroup className="d-flex p-2 ">
+          <InputGroup className="d-flex p-2 w-100">
             <DropdownButton
               variant="light"
               className="bg-white fts-7"
@@ -50,14 +51,16 @@ const NavMob = () => {
             </DropdownButton>
             <input
               placeholder="Search for products"
-              className="flex-grow-1 border-0"
+              className="input-nav flex-grow-1 border-0"
             />
             <InputGroup.Text className="border-0">
               <i className="fa-solid fa-magnifying-glass"></i>
             </InputGroup.Text>
           </InputGroup>
           <div className="d-flex flex-column h-75 align-items-center color-white gap-4 mt-4">
-            <p className="m-0 fts-2-5">Home</p>
+            <p role="button" onClick={goHome} className="m-0 fts-2-5">
+              Home
+            </p>
             <p className="m-0 fts-2-5">Easy Monthly Installments</p>
             <p className="m-0 fts-2-5">Shop By Brands</p>
             <p className="m-0 fts-2-5">Become a Vendor</p>

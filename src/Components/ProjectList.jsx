@@ -4,49 +4,50 @@ import phoneIMG from "../assets/phone.png";
 import watchIMG from "../assets/watch.png";
 import ProdList from "./ProdList";
 
+const products = [
+  {
+    id: 1,
+    name: "I-watch series 4",
+    color: "save-10-red",
+    image: watchIMG,
+    price: [145, 160],
+  },
+  {
+    id: 2,
+    name: "Samsung A-96 6gb ram",
+    color: "save-10-green",
+    image: phoneIMG,
+    price: [400, 560],
+  },
+  {
+    id: 3,
+    name: 'Sony 65" OLED display',
+    color: "save-10-blue",
+    image: televisionIMG,
+    price: [1240, 1460],
+  },
+];
+const prodLists = [
+  {
+    id: 1,
+    text: "Featured",
+    num1: 1,
+    num2: 3,
+  },
+  {
+    id: 2,
+    text: "On Sale",
+    num1: 10,
+    num2: 12,
+  },
+  {
+    id: 3,
+    text: "Top Rated",
+    num1: 17,
+    num2: 19,
+  },
+];
 const ProjectList = () => {
-  const products = [
-    {
-      id: 1,
-      name: "I-watch series 4",
-      color: "save-10-red",
-      image: watchIMG,
-      price: [145, 160],
-    },
-    {
-      id: 2,
-      name: "Samsung A-96 6gb ram",
-      color: "save-10-green",
-      image: phoneIMG,
-      price: [400, 560],
-    },
-    {
-      id: 3,
-      name: 'Sony 65" OLED display',
-      color: "save-10-blue",
-      image: televisionIMG,
-      price: [1240, 1460],
-    },
-  ];
-
-  const prodLists = [
-    {
-      id: 1,
-      text: "Featured",
-      num: [1, 3],
-    },
-    {
-      id: 2,
-      text: "On Sale",
-      num: [10, 12],
-    },
-    {
-      id: 3,
-      text: "Top Rated",
-      num: [17, 19],
-    },
-  ];
-
   return (
     <div>
       <h2>
@@ -78,16 +79,19 @@ const ProjectList = () => {
           );
         })}
       </div>
-      <div className="project-grid mt-4 media-scroller snaps d-lg-flex justify-content-lg-evenly">
+      <div
+        id="prod-list"
+        className="project-grid mt-4 media-scroller snaps d-lg-flex justify-content-lg-evenly"
+      >
         {prodLists.map((item) => {
-          const { id, text, num } = item;
+          const { id, text, num1, num2 } = item;
           return (
             <div className="bg-white me-5" key={id}>
               <h2 className="mb-3 ps-5 py-3">
                 <span className="color-red">{text} </span>
                 Products
               </h2>
-              <ProdList num1={num[0]} num2={num[1]} />
+              <ProdList {...item} />
             </div>
           );
         })}

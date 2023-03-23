@@ -1,20 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import specialIMG from "../assets/headphone.png";
-import { UseFetchData } from "../contexts/UseFetchData";
+import { addToCart, openModal } from "../features/cartSlice";
 
+const prodArray = [
+  {
+    count: 0,
+    num: 1,
+  },
+  {
+    count: 1,
+    num: 7,
+  },
+  {
+    count: 2,
+    num: 13,
+  },
+];
 const OurProducts = () => {
-  const { isLoading, data, isError, error } = UseFetchData();
+  const dispatch = useDispatch();
+  const { data } = useSelector((store) => store.api);
+  const [counter, setCounter] = useState(0);
+  const [prod, setProd] = useState(prodArray[counter]);
+  useEffect(() => {
+    setProd(prodArray[counter]);
+  }, [counter]);
 
-  if (isLoading) {
-    return <h2>Loading....</h2>;
-  }
-  if (isError) {
-    return <h2>{error.message}</h2>;
-  }
-
+  const toggleProd = (e) => {
+    if (e.target.classList.contains("p1")) {
+      setCounter(0);
+    } else if (e.target.classList.contains("p2")) {
+      setCounter(1);
+    } else {
+      setCounter(2);
+    }
+  };
   return (
-    <div className="p-4 d-flex flex-column flex-xl-row justify-content-between gap-4">
+    <div
+      id="our-products"
+      className="p-4 d-flex flex-column flex-xl-row justify-content-between gap-4"
+    >
       <div className="products-top">
         <h4 className="title">
           <span className="color-title">Our </span>
@@ -45,21 +71,59 @@ const OurProducts = () => {
         </div>
       </div>
       <div className="products-bottom">
-        <div className="header d-flex gap-3 gap-md-5">
-          <h4 className="fts-8 fts-sm-6 fts-md-3 active">
+        <div className="header d-flex gap-3 gap-md-5 align-items-start">
+          <h4
+            role="button"
+            onClick={toggleProd}
+            className={`p1 fts-8 fts-sm-6 fts-md-3 ${
+              prod.count == 0 && "active"
+            } `}
+          >
             EASY MONTHLY INSTALLMENTS
           </h4>
-          <h4 className="fts-8 fts-sm-6 fts-md-3 ">ON SALE</h4>
-          <h4 className="fts-8 fts-sm-6 fts-md-3">TOP RATED</h4>
-          <div className="ms-auto d-flex me-2 ">
-            <i className="fa-solid fa-caret-left fts-2-5"></i>
-            <i className="fa-solid fa-caret-right fts-2-5"></i>
+          <h4
+            role="button"
+            onClick={toggleProd}
+            className={`p2 fts-8 fts-sm-6 fts-md-3 ${
+              prod.count == 1 && "active"
+            } `}
+          >
+            ON SALE
+          </h4>
+          <h4
+            role="button"
+            onClick={toggleProd}
+            className={`p3 fts-8 fts-sm-6 fts-md-3 ${
+              prod.count == 2 && "active"
+            } `}
+          >
+            TOP RATED
+          </h4>
+          <div className="ms-auto d-flex me-2">
+            <button
+              className="m-0 border-0 p-0"
+              disabled={prod.count == 0}
+              onClick={() => {
+                setCounter((prev) => prev - 1);
+              }}
+            >
+              <i className="fa-solid fa-caret-left fts-2-5"></i>
+            </button>
+            <button
+              className="m-0 border-0 p-0"
+              disabled={prod.count == 2}
+              onClick={() => {
+                setCounter((prev) => prev + 1);
+              }}
+            >
+              <i className="fa-solid fa-caret-right fts-2-5"></i>
+            </button>
           </div>
         </div>
         <div className="arrive-bottom row p-3 gap-4 justify-content-around">
-          {data.data.map((data) => {
-            const { id, price, category, title, image } = data;
-            if (id < 9) {
+          {data.map((data) => {
+            const { id, price, category, title, images, brand } = data;
+            if (id >= prod.num && id <= prod.num + 7) {
               return (
                 <div
                   key={id}
@@ -70,7 +134,7 @@ const OurProducts = () => {
                     {title.slice(0, 15)}...
                   </h4>
                   <div className="arrive-img">
-                    <img src={image} alt="gergrfe" />
+                    <img src={images[images.length - 1]} alt={brand} />
                   </div>
                   <div className="arrive-price d-flex gap-2 align-items-center">
                     <h5 className="fts-6 text-decoration-line-through">
@@ -78,7 +142,10 @@ const OurProducts = () => {
                     </h5>
                     <h4 className="fts-4-5 color-title">$ {price}</h4>
                   </div>
-                  <Button className="bg-green fts-4-5 w-100 border-0">
+                  <Button
+                    onClick={() => dispatch(openModal(id))}
+                    className="bg-green fts-4-5 w-100 border-0"
+                  >
                     Add to cart
                   </Button>
                 </div>

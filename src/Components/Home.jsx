@@ -17,8 +17,7 @@ const Home = () => {
     dispatch(fetchData());
   }, []);
 
-  const { isLoading, data } = useSelector((store) => store.api);
-  isLoading && <h2>Loading...</h2>;
+  const { data } = useSelector((store) => store.api);
   return (
     <div className="bg-caramel">
       <Navbar />

@@ -8,13 +8,30 @@ const initialState = {
 
 export const fetchData = createAsyncThunk("api/fetchData", async () => {
   const resp = await axios.get("https://dummyjson.com/products?limit=20");
-  return resp.data.products;
+  const data = await resp.data.products;
+  for (let i = 0; i < data.length; i++) {
+    data[i].quantity = 0;
+  }
+  return data;
 });
 
 const apiSlice = createSlice({
   name: "data",
   initialState,
-  reducers: {},
+  reducers: {
+    increase: (state, action) => {
+      const cartItem = state.data.find((item) => item.id === action.payload.id);
+      cartItem.quantity == 0
+        ? (cartItem.quantity = action.payload.qty + 1)
+        : (cartItem.quantity = cartItem.quantity + 1);
+    },
+    decrease: (state, action) => {
+      const cartItem = state.data.find((item) => item.id === action.payload.id);
+      cartItem.quantity == 0
+        ? (cartItem.quantity = action.payload.qty - 1)
+        : (cartItem.quantity = cartItem.quantity - 1);
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchData.pending, (state) => {
       state.isLoading = true;
@@ -29,4 +46,5 @@ const apiSlice = createSlice({
   },
 });
 
+export const { increase, decrease } = apiSlice.actions;
 export default apiSlice.reducer;

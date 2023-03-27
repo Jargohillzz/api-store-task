@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { decrease, increase } from "../features/apiSlice";
 import { clearCart, removeItem } from "../features/cartSlice";
 import Navbar from "./Navbar";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const { items } = useSelector((store) => store.cart);
-  const { data } = useSelector((store) => store.api);
+  const { data, isLoading } = useSelector((store) => store.api);
 
-  // const dataa = data.filter((prod) => prod.id === items[i]);
-  // console.log(dataa);
   return (
     <div className="">
       <Navbar />
@@ -22,9 +21,12 @@ const Cart = () => {
             </h4>
           ) : (
             <div className="cart-wrapper pb-5">
+              {isLoading == true && <h3>Loading...</h3>}
+
               {data.map((prod) => {
-                const { id, price, title, images, brand } = prod;
+                const { id, price, title, images, brand, quantity } = prod;
                 if (items.includes(id)) {
+                  let qty = items.filter((item) => item === id).length;
                   return (
                     <article key={id} className="cart-item">
                       <img src={images[images.length - 1]} alt={brand} />
@@ -41,27 +43,32 @@ const Cart = () => {
                         </button>
                       </div>
                       <div>
-                        {/* <button
+                        <button
                           className="amount-btn"
-                          // onClick={() => {
-                          //   dispatch(increase({ id }));
-                          // }}
+                          onClick={() => {
+                            dispatch(increase({ id, qty }));
+                          }}
                         >
                           <i className="fa-solid fa-chevron-up"></i>
                         </button>
-                        <p className="amount">1</p>
+                        <p className="amount">{quantity || qty}</p>
                         <button
                           className="amount-btn"
-                          // onClick={() => {
-                          //   if (amount === 1) {
-                          //     dispatch(removeItem(id));
-                          //     return;
-                          //   }
-                          //   dispatch(decrease({ id }));
-                          // }}
+                          onClick={() => {
+                            if (quantity == 0) {
+                              if (qty === 1) {
+                                dispatch(removeItem(id));
+                                return;
+                              }
+                            } else if (quantity === 1) {
+                              dispatch(removeItem(id));
+                              return;
+                            }
+                            dispatch(decrease({ id, qty }));
+                          }}
                         >
                           <i className="fa-solid fa-chevron-down"></i>
-                        </button> */}
+                        </button>
                       </div>
                     </article>
                   );

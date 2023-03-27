@@ -12,8 +12,8 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state) => {
-      state.num += 1;
       state.items.push(state.tempId);
+      state.num = state.items.length;
     },
     openModal: (state, action) => {
       state.isOpen = true;

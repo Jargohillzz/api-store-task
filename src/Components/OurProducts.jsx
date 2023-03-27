@@ -20,7 +20,7 @@ const prodArray = [
 ];
 const OurProducts = () => {
   const dispatch = useDispatch();
-  const { data } = useSelector((store) => store.api);
+  const { isLoading, data } = useSelector((store) => store.api);
   const [counter, setCounter] = useState(0);
   const [prod, setProd] = useState(prodArray[counter]);
   useEffect(() => {
@@ -36,11 +36,13 @@ const OurProducts = () => {
       setCounter(2);
     }
   };
+
   return (
     <div
       id="our-products"
       className="p-4 d-flex flex-column flex-xl-row justify-content-between gap-4"
     >
+      {isLoading == true && <h3>Loading...</h3>}
       <div className="products-top">
         <h4 className="title">
           <span className="color-title">Our </span>

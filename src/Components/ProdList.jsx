@@ -4,10 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { openModal } from "../features/cartSlice";
 
 const ProdList = ({ num1, num2 }) => {
-  const { data } = useSelector((store) => store.api);
+  const { data, isLoading } = useSelector((store) => store.api);
   const dispatch = useDispatch();
+
   return (
     <>
+      {isLoading == true && <h3>Loading...</h3>}
       {data.map((data) => {
         const { id, price, category, title, images, brand } = data;
         if (id >= num1 && id <= num2) {

@@ -5,7 +5,8 @@ import { openModal } from "../features/cartSlice";
 
 const NewArrivals = () => {
   const dispatch = useDispatch();
-  const { data } = useSelector((store) => store.api);
+  const { data, isLoading } = useSelector((store) => store.api);
+
   return (
     <div className="p-3 px-md-5">
       <div className="arrive-top d-flex justify-content-between align-items-center">
@@ -15,6 +16,7 @@ const NewArrivals = () => {
         <h5 className="color-title">Ends in: 08 08 53 08</h5>
       </div>
       <div className="arrive-bottom row p-4 gap-4 justify-content-around">
+        {isLoading == true && <h3>Loading...</h3>}
         {data.map((data) => {
           const { id, price, category, title, images, brand } = data;
           if (id > 14) {

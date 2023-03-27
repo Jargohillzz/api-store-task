@@ -7,7 +7,7 @@ const Slider = () => {
   const sliderRef = useRef();
   const [counter, setCounter] = useState(0);
   const [scroller, setScroller] = useState(0);
-  const { data } = useSelector((store) => store.api);
+  const { data, isLoading } = useSelector((store) => store.api);
 
   const scrollValue = () => {
     const value = Math.floor(sliderRef.current.scrollLeft);
@@ -34,6 +34,7 @@ const Slider = () => {
           ref={sliderRef}
           onScroll={scrollValue}
         >
+          {isLoading == true && <h3>Loading...</h3>}
           {data.map((prod) => {
             const { id, images, category } = prod;
             return (
@@ -54,7 +55,6 @@ const Slider = () => {
           <i className="fts-2 fa-solid fa-chevron-right"></i>
         </div>
       </div>
-
       <div className="slider p-4 d-flex flex-column flex-lg-row gap-5 gap-lg-1">
         <div className="container-md ms-4 max-490">
           <h2 className="fts-2 fts-md-0">

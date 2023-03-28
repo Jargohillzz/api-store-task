@@ -12,7 +12,7 @@ const Cart = () => {
   return (
     <div className="">
       <Navbar />
-      <section className="mt-3 container cart-container">
+      <section className="mt-3 container">
         <header>
           <h2 className="text-center">Your bag</h2>
           {items.length < 1 ? (

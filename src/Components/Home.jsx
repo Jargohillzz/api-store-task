@@ -19,7 +19,7 @@ const Home = () => {
 
   const { data } = useSelector((store) => store.api);
   return (
-    <div className="bg-caramel">
+    <div className="bg-caramel home">
       <Navbar />
       <Hero />
       <Slider />

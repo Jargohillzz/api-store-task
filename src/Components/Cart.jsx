@@ -41,7 +41,7 @@ const Cart = () => {
                           remove
                         </button>
                       </div>
-                      <div className="d-flex flex-column align-items-center">
+                      <div className="d-flex flex-column align-items-center me-2 mw-fit">
                         <button
                           className="amount-btn"
                           onClick={() => {

@@ -22,7 +22,6 @@ const Cart = () => {
           ) : (
             <div className="cart-wrapper pb-5">
               {isLoading == true && <h3>Loading...</h3>}
-
               {data.map((prod) => {
                 const { id, price, title, images, brand, quantity } = prod;
                 if (items.includes(id)) {
@@ -42,7 +41,7 @@ const Cart = () => {
                           remove
                         </button>
                       </div>
-                      <div>
+                      <div className="d-flex flex-column align-items-center">
                         <button
                           className="amount-btn"
                           onClick={() => {

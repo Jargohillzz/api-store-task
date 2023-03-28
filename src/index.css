@@ -572,24 +572,23 @@ hr {
 }
 .clear-container {
   position: fixed;
-  top: 90vh;
+  bottom: 20px;
   right: 50%;
   transform: translateX(50%);
 }
 .clear-container .clear-btn {
   color: #c82020;
   border: 1px solid #c82020;
-  background-color: rgba(255, 255, 255, 0.7);
   font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  transition: 500ms ease;
+  transition: all 500ms ease;
   font-weight: bold;
   border-radius: 5px;
 }
-.clear-container .clear-btn:hover {
+.clear-container .clear-btn:hover,
+.clear-container .clear-btn:focus {
   background-color: #c82020;
   color: white;
-  opacity: 0.7;
   box-shadow: 0 0 15px -5px #c82020;
 }

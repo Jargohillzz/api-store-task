@@ -21,12 +21,14 @@ const Home = () => {
   return (
     <div className="bg-caramel home">
       <Navbar />
-      <Hero />
-      <Slider />
-      <NewArrivals />
-      <OurProducts />
-      <ProjectList />
-      <Footer />
+      <div className="mt-5">
+        <Hero />
+        <Slider />
+        <NewArrivals />
+        <OurProducts />
+        <ProjectList />
+        <Footer />
+      </div>
     </div>
   );
 };
